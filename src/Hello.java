@@ -21,7 +21,7 @@ public class Hello {
         public void inSay(){
             a=1;
             System.out.println(a);
-
+            a=2;
         }
     }
 
