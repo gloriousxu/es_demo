@@ -3,4 +3,5 @@
  */
 public interface Worker {
     public int dosome();
+    public void run();
 }
