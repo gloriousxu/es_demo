@@ -1,4 +1,4 @@
-package com.xu;
+package com.crm.es;
 
 import org.elasticsearch.common.collect.Maps;
 
@@ -18,9 +18,9 @@ import java.util.Map;
 public class Dao {
 
     public static void main(String[] args) throws SQLException{
-        System.out.println(new Dao().findStudents());
-
+        System.out.println(new Dao().findOrders().get(0));
     }
+
     /*学员列表*/
     public List findStudents(){
         ResultSet res = null;
@@ -82,6 +82,8 @@ public class Dao {
                 m.put("coursename",res.getString("coursename"));
                 m.put("createtime",res.getString("createtime"));
                 m.put("finishedtime",res.getString("finishedtime"));
+                m.put("createdate",res.getDate("createtime"));
+                m.put("finisheddate",res.getDate("finishedtime"));
                 m.put("dealer",res.getInt("dealer"));
                 m.put("userphone",res.getString("userphone"));
                 m.put("worksource",res.getString("worksource"));
@@ -120,6 +122,8 @@ public class Dao {
                 m.put("orderstatusid",res.getInt("orderstatusid"));
                 m.put("ordertime",res.getString("ordertime"));
                 m.put("paytime",res.getString("paytime"));
+                m.put("orderdate",res.getDate("ordertime"));
+                m.put("paydate",res.getDate("paytime"));
                 m.put("validincomepercent",res.getDouble("validincomepercent"));
                 m.put("validincome",res.getDouble("validincome"));
                 m.put("productstatus",res.getInt("productstatus"));

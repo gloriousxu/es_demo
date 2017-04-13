@@ -4,7 +4,7 @@ package com.crm.es;
  * @author xuchao
  * @create 2017/4/13.
  */
-//
-public enum FielterEnum {
-    RANGE,ITEM,MATCH;
+//过滤器枚举
+public enum FilterEnum {
+    RANGE,TERM,MATCH,LIKE
 }

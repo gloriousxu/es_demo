@@ -1,4 +1,4 @@
-package com.xu;
+package com.crm.es;
 
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
@@ -11,7 +11,6 @@ import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.collect.Maps;
-import org.elasticsearch.common.lang3.StringUtils;
 import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
@@ -75,9 +74,11 @@ public class EsSerice {
     /*批量索引*/
     public BulkResponse bulkIndexStudent(String index, String type, List<Map> docs){
         BulkResponse response = null;
+
         int start = 0;
         int count = 100;
         int loop = 0;
+
         while (loop <= docs.size()/count){
             int end = docs.size();
             if (loop < docs.size()/count) {
@@ -100,6 +101,7 @@ public class EsSerice {
                 IndexRequest req = resBuilder.request();
                 rb = rb.add(req);
                 response = rb.execute().actionGet();
+
             }
             System.out.println("已索引 "+end+" 条文档……");
             start = start + count;
@@ -144,7 +146,5 @@ public class EsSerice {
         }finally {
             client = null;
         }
-
-
     }
 }
