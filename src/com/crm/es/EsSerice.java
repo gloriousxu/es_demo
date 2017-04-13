@@ -43,22 +43,22 @@ public class EsSerice {
 
     public void initClient(){
         Properties properties = new Properties();
-
-        /*读取ES配置信息*/
-        try {
-            properties.load(new FileInputStream(new File("src/es.properties")));
-            IP = properties.getProperty("es_ip");
-            PORT = Integer.parseInt(properties.getProperty("es_port"));
-            CLUSTERNAME= properties.getProperty("es_clustername");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        /*Transport连接ES集群*/
-        Settings settings = ImmutableSettings.settingsBuilder()
-                .put("cluster.name", CLUSTERNAME).build();
-
         if (client == null) {
+            /*读取ES配置信息*/
+            try {
+                properties.load(new FileInputStream(new File("src/es.properties")));
+                IP = properties.getProperty("es_ip");
+                PORT = Integer.parseInt(properties.getProperty("es_port"));
+                CLUSTERNAME= properties.getProperty("es_clustername");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            /*Transport连接ES集群*/
+            Settings settings = ImmutableSettings.settingsBuilder()
+                    .put("cluster.name", CLUSTERNAME).build();
+
+
             client = new TransportClient(settings).addTransportAddress(
                     new InetSocketTransportAddress(IP, PORT));
         }

@@ -41,39 +41,52 @@ public class EsHandler {
     static void indexStudentstab(){
         EsSerice es = new EsSerice();
         es.initClient();
-        List stus = dao.findStudents();
-        if (stus != null && stus.size() != 0) {
-            es.bulkIndexStudent("crm","studentstab",stus);
+        try {
+            List stus = dao.findStudents();
+            if (stus != null && stus.size() != 0) {
+                es.bulkIndexStudent("crm","studentstab",stus);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            /*关闭连接*/
+            es.close();
         }
-        /*关闭连接*/
-        es.close();
     }
 
     //索引工作表
     static void indexJobs(){
         EsSerice es = new EsSerice();
         es.initClient();
-        List jobs = dao.findJobs();
+        try {
+            List jobs = dao.findJobs();
 
-        if (jobs != null && jobs.size() != 0) {
-            es.bulkIndexStudent("crm","jobs",jobs);
+            if (jobs != null && jobs.size() != 0) {
+                es.bulkIndexStudent("crm","jobs",jobs);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            /*关闭连接*/
+            es.close();
         }
-
-        /*关闭连接*/
-        es.close();
     }
 
     //索引订单表
     static void indexorders(){
         EsSerice es = new EsSerice();
         es.initClient();
-        List orders = dao.findOrders();
-
-        if (orders != null && orders.size() != 0) {
-            es.bulkIndexStudent("crm","orders",orders);
+        try {
+            List orders = dao.findOrders();
+            if (orders != null && orders.size() != 0) {
+                es.bulkIndexStudent("crm","orders",orders);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            /*关闭连接*/
+            es.close();
         }
 
-        /*关闭连接*/
-        es.close();
     }
 }
