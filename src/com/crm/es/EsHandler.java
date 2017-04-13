@@ -1,10 +1,5 @@
 package com.crm.es;
 
-import org.elasticsearch.common.collect.Maps;
-import org.elasticsearch.index.query.*;
-import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
-
 import java.util.*;
 
 /**

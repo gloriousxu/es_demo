@@ -161,7 +161,6 @@ public class SearchStudent {
                 HasChildFilterBuilder child = FilterBuilders.hasChildFilter(type,b);
                 fb=fb.must(child);
             }
-
         }
         return fb;
     }
@@ -198,7 +197,6 @@ public class SearchStudent {
             /*关闭连接*/
             es.close();
         }
-
         return hits;
     }
 }
