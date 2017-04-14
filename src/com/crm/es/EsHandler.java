@@ -12,9 +12,9 @@ public class EsHandler {
     public static void main(String[] args) {
 
         /*索引学员文档*/
-//        System.out.println("开始索引学员表……");
-//        indexStudentstab();
-//        System.out.println("索引学员成功！");
+        /*System.out.println("开始索引学员表……");
+        indexStudentstab();
+        System.out.println("索引学员成功！");*/
 
         /*索引工作表*/
 //        System.out.println("开始索引工作表……");

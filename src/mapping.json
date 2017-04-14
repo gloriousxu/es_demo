@@ -1,0 +1,431 @@
+{
+  "settings": {
+    "number_of_shards": 1
+  },
+  "mappings":{
+    "studentstab":{
+      "properties":{
+        "studid":{
+          "type":"integer"
+        },
+        "username":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "username":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "realname":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "sex":{
+          "type":"integer"
+        },
+        "phone":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "email":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "userlevel":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "qq":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "address":{
+          "type": "string",
+          "index": "no"
+        },
+        "postcode":{
+          "type": "string",
+          "index": "no"
+        },
+        "job":{
+          "type": "string",
+          "index": "no"
+        },
+        "studyaim":{
+          "type": "string",
+          "index": "no"
+        },
+        "remark":{
+          "type": "string",
+          "index": "no"
+        },
+        "skype":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "provincename":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "cityname":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "creator":{
+          "type": "string",
+          "index": "no"
+        },
+        "registertime":{
+          "store": true,
+          "format": "yyyy-MM-dd",
+          "type": "date"
+        },
+        "creattime":{
+          "type": "date",
+          "index": "no"
+        },
+        "modifytime":{
+          "type": "date",
+          "index": "no"
+        },
+        "modifier":{
+          "type": "integer"
+        },
+        "phonebackone":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "phonebacktwo":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "phonebackthree":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "phonebackfour":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "lastcallphone":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "oldid":{
+          "type": "integer"
+        },
+        "channel":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "sub_channel":{
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "status":{
+          "type": "integer"
+        },
+        "isphone":{
+          "type": "integer"
+        },
+        "isorder":{
+          "type": "integer"
+        }
+      }
+    },
+    "orders":{
+      "_parent":{
+        "type":"studentstab"
+      },
+      "properties":{
+        "id": {
+          "type": "integer"
+        },
+        "orderid": {
+          "type": "integer"
+        },
+        "orderno": {
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "userid": {
+          "type": "integer"
+        },
+        "productid": {
+          "type": "integer"
+        },
+        "finance_category_id": {
+          "type": "integer"
+        },
+        "productname": {
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "orderstatusid": {
+          "type": "integer"
+        },
+        "ordertime": {
+          "store": true,
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "type": "date"
+        },
+        "paytime": {
+          "store": true,
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "type": "date"
+        },
+        "validincomepercent": {
+          "type": "float"
+        },
+        "validincome": {
+          "type": "float"
+        },
+        "productstatus": {
+          "type": "integer"
+        },
+        "courseprocess": {
+          "type": "float"
+        },
+        "lastupdatetime": {
+          "index": "no",
+          "type": "date"
+        }
+      }
+    },
+    "jobs":{
+      "_parent":{
+        "type":"studentstab"
+      },
+      "properties":{
+        "id": {
+          "type": "integer"
+        },
+        "workname": {
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "actid": {
+          "type": "integer"
+        },
+        "actname": {
+          "type": "string",
+          "index": "no"
+        },
+        "acttype": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "integer"
+        },
+        "level": {
+          "type": "integer"
+        },
+        "worktype": {
+          "type": "integer"
+        },
+        "protype": {
+          "type": "integer"
+        },
+        "prochildtype": {
+          "type": "integer"
+        },
+        "coursename": {
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "consultcotent": {
+          "type": "string",
+          "index": "no"
+        },
+        "maketheme": {
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "maketime": {
+          "store": true,
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "type": "date"
+        },
+        "createtime": {
+          "store": true,
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "type": "date"
+        },
+        "disposeresult": {
+          "type": "string",
+          "index": "no"
+        },
+        "disposetime": {
+          "type": "float"
+        },
+        "gettime": {
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "type": "date"
+        },
+        "modifytime": {
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "type": "date"
+        },
+        "finishedtime": {
+          "store": true,
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "type": "date"
+        },
+        "giveupreason": {
+          "type": "string",
+          "index": "no"
+        },
+        "creater": {
+          "type": "integer"
+        },
+        "dealer": {
+          "type": "integer"
+        },
+        "complainttype": {
+          "type": "integer"
+        },
+        "complaintlevel": {
+          "type": "integer"
+        },
+        "userid": {
+          "type": "integer"
+        },
+        "username": {
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "userphone": {
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "distributiongroup": {
+          "type": "string",
+          "index": "no"
+        },
+        "communicatetimes": {
+          "type": "integer"
+        },
+        "worksource": {
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "complaintcontent": {
+          "type": "string",
+          "index": "no"
+        },
+        "recorder": {
+          "type": "string",
+          "index": "no"
+        },
+        "distributer": {
+          "type": "integer"
+        },
+        "attempered": {
+          "type": "integer"
+        },
+        "orderstatus": {
+          "type": "string",
+          "index": "no"
+        },
+        "msgid": {
+          "type": "integer"
+        },
+        "filename": {
+          "type": "string",
+          "index": "no"
+        },
+        "filepath": {
+          "type": "string",
+          "index": "no"
+        },
+        "firstviemurl": {
+          "type": "string",
+          "index": "no"
+        },
+        "talkurl": {
+          "type": "string",
+          "index": "no"
+        },
+        "kid": {
+          "type": "integer"
+        },
+        "allianceid": {
+          "type": "integer"
+        },
+        "calltype": {
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "didgroup": {
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "didnum": {
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        },
+        "last_update_time": {
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "type": "date",
+          "index": "no"
+        }
+      }
+    }
+  }
+}

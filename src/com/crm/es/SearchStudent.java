@@ -21,14 +21,14 @@ public class SearchStudent {
         Map<String,Map> fv = Maps.newHashMap();
 
         Map<String,Object> m = Maps.newHashMap();
-        m.put("value","2017-01-02~2017-01-05");
+        m.put("value","2017-01-02~2017-01-09");
         m.put("operator",OperatorEnum.BETWEEN);
-        fv.put("paydate",m);
+//        fv.put("paydate",m);
 
         Map<String,Object> m1 = Maps.newHashMap();
         m1.put("value","2000");
         m1.put("operator",OperatorEnum.GTE);
-        fv.put("validincome",m1);
+//        fv.put("validincome",m1);
 
         Map<String,Object> m2 = Maps.newHashMap();
         m2.put("value","2");
@@ -41,9 +41,14 @@ public class SearchStudent {
 //        fv.put("productname",m3);
 
         Map<String,Object> m4 = Maps.newHashMap();
-        m4.put("value","649");
+        m4.put("value","186");
         m4.put("operator",OperatorEnum.DEFAULT);
-        fv.put("phone",m4);
+//        fv.put("phone",m4);
+
+        Map<String,Object> m5 = Maps.newHashMap();
+        m5.put("value","0");
+        m5.put("operator",OperatorEnum.DEFAULT);
+        fv.put("isorder",m5);
         return fv;
     }
 
@@ -100,6 +105,11 @@ public class SearchStudent {
         c10.put(FieldEnum.TYPE,"orders");
         c10.put(FieldEnum.BUILDER, FilterEnum.MATCH);
         sf.put("productname",c10);
+        Map c11 = Maps.newHashMap();
+        c11.put(FieldEnum.TYPE,"orders");
+        c11.put(FieldEnum.BUILDER, FilterEnum.DEFAULT);
+        sf.put("isorder",c11);//是否有订单
+
         return sf;
     }
 
@@ -107,7 +117,6 @@ public class SearchStudent {
     FilterBuilder generateBuilder(Map<String,Map> searchCondition, Map<String,Map> fm){
 
         BoolFilterBuilder fb = FilterBuilders.boolFilter();
-
         for (String field:searchCondition.keySet()) {
             FilterEnum builderType = (FilterEnum)fm.get(field).get(FieldEnum.BUILDER);
             String type = (String)fm.get(field).get(FieldEnum.TYPE);
@@ -116,49 +125,74 @@ public class SearchStudent {
             String fieldValue = (String)searchCondition.get(field).get("value");
             OperatorEnum fieldOperator = (OperatorEnum)searchCondition.get(field).get("operator");
 
-            switch (builderType){
-                case TERM:
-                    b=FilterBuilders.termFilter(field,fieldValue);
-                    break;
-                case RANGE:
+            if ("phone".equals(field)){
 
-                    RangeFilterBuilder rb=FilterBuilders.rangeFilter(field);
-                    switch (fieldOperator){
-                        case GTE:
-                            rb.gte(fieldValue);
-                            break;
-                        case LTE:
-                            rb.lte(fieldValue);
-                            break;
-                        case GT:
-                            rb.gt(fieldValue);
-                            break;
-                        case LT:
-                            rb.lt(fieldValue);
-                            break;
-                        case BETWEEN:
-                            String[] split = fieldValue.split("~");
-                            if (split!=null&split.length==2){
-                                rb.gte(split[0]).lte(split[1]);
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-                    b=rb;
-                    break;
-                case LIKE:
-                    b = FilterBuilders.regexpFilter(field,".*"+fieldValue+".*");
-                    break;
-                case MATCH:
-                            QueryBuilder q = QueryBuilders.matchQuery(field,fieldValue);
-                            b = FilterBuilders.queryFilter(q);
-                    break;
+                BoolFilterBuilder sb=FilterBuilders.boolFilter();
+                sb.should(FilterBuilders.regexpFilter(field,".*"+fieldValue+".*"))
+                    .should(FilterBuilders.regexpFilter("phonebackone",".*"+fieldValue+".*"))
+                    .should(FilterBuilders.regexpFilter("phonebacktwo",".*"+fieldValue+".*"))
+                    .should(FilterBuilders.regexpFilter("phonebackthree",".*"+fieldValue+".*"))
+                    .should(FilterBuilders.regexpFilter("phonebackfour",".*"+fieldValue+".*"));
+                b=sb;
+
+            }else {
+                switch (builderType){
+                    case TERM:
+                        b=FilterBuilders.termFilter(field,fieldValue);
+                        break;
+                    case RANGE:
+                        RangeFilterBuilder rb=FilterBuilders.rangeFilter(field);
+                        switch (fieldOperator){
+                            case GTE:
+                                rb.gte(fieldValue);
+                                break;
+                            case LTE:
+                                rb.lte(fieldValue);
+                                break;
+                            case GT:
+                                rb.gt(fieldValue);
+                                break;
+                            case LT:
+                                rb.lt(fieldValue);
+                                break;
+                            case BETWEEN:
+                                String[] split = fieldValue.split("~");
+                                if (split!=null&split.length==2){
+                                    rb.gte(split[0]).lte(split[1]);
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                        b=rb;
+                        break;
+                    case LIKE:
+                        b = FilterBuilders.regexpFilter(field,".*"+fieldValue+".*");
+                        break;
+                    case MATCH:
+                        QueryBuilder q = QueryBuilders.matchQuery(field,fieldValue);
+                        b = FilterBuilders.queryFilter(q);
+                        break;
+                    case MISSING:
+//                        b=FilterBuilders.hasChildFilter("",b).;
+                        break;
+                    case DEFAULT:
+                        b=FilterBuilders.queryFilter(QueryBuilders.matchAllQuery());
+                        break;
+                }
             }
+
             if (type == "studentstab"){
                 fb=fb.must(b);
             }else{
                 HasChildFilterBuilder child = FilterBuilders.hasChildFilter(type,b);
+                if("isorder".equals(field)){
+                    child.minChildren(1);
+                    if (Integer.parseInt(fieldValue)==0){
+                        fb=fb.mustNot(child);
+                        continue;
+                    }
+                }
                 fb=fb.must(child);
             }
         }

@@ -18,8 +18,11 @@ import java.util.Map;
 public class Dao {
 
     public static void main(String[] args) throws SQLException{
-        System.out.println(new Dao().findOrders().get(0));
+//        System.out.println(new Dao().findOrders().get(0));
+
     }
+
+
 
     /*学员列表*/
     public List findStudents(){
@@ -29,7 +32,7 @@ public class Dao {
         try {
             conn = DBManager.getConnection();
             stmt = conn.createStatement();
-            String sql = "select * from studentstab where registertime between '2017-01-02' AND  '2017-01-05'";
+            String sql = "select * from studentstab where registertime between '2016-12-01' AND  '2016-12-31'";
             System.out.println("mysql connect success!");
             res = stmt.executeQuery(sql);
             List list = new ArrayList();
@@ -66,7 +69,7 @@ public class Dao {
         try {
             conn = DBManager.getConnection();
             stmt = conn.createStatement();
-            String sql = "select * from jobs where createtime BETWEEN '2017-01-01' AND '2017-01-05'";
+            String sql = "select * from jobs where createtime BETWEEN '2017-01-21' AND '2017-02-31'";
             System.out.println("mysql connect success!");
             res = stmt.executeQuery(sql);
             List list = new ArrayList();
@@ -106,7 +109,7 @@ public class Dao {
         try {
             conn = DBManager.getConnection();
             stmt = conn.createStatement();
-            String sql = "select a.*,b.studid from shark_order_for_search a join studentstab b ON a.userid = b.oldid where ordertime BETWEEN '2017-01-01' AND '2017-01-05'";
+            String sql = "select a.*,b.studid from shark_order_for_search a join studentstab b ON a.userid = b.oldid where ordertime BETWEEN '2017-01-21' AND '2017-02-31'";
             System.out.println("mysql connect success!");
             res = stmt.executeQuery(sql);
             List list = new ArrayList();

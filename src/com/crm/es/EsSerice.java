@@ -71,12 +71,20 @@ public class EsSerice {
         return response;
     }
 
+    /*依赖父索引文档，索引单个文档*/
+    public IndexResponse indexDocumentByParent(String index,String type,String id,String parent,Map m){
+        IndexResponse response = client.prepareIndex(index, type, id)
+                .setParent(parent)
+                .setSource(m).execute().actionGet();
+        return response;
+    }
+
     /*批量索引*/
     public BulkResponse bulkIndexStudent(String index, String type, List<Map> docs){
         BulkResponse response = null;
 
         int start = 0;
-        int count = 100;
+        int count = 500;
         int loop = 0;
 
         while (loop <= docs.size()/count){
@@ -100,9 +108,8 @@ public class EsSerice {
 
                 IndexRequest req = resBuilder.request();
                 rb = rb.add(req);
-                response = rb.execute().actionGet();
-
             }
+            response = rb.execute().actionGet();
             System.out.println("已索引 "+end+" 条文档……");
             start = start + count;
             loop++;

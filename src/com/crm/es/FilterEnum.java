@@ -6,5 +6,5 @@ package com.crm.es;
  */
 //过滤器枚举
 public enum FilterEnum {
-    RANGE,TERM,MATCH,LIKE
+    RANGE,TERM,MATCH,LIKE,MISSING,DEFAULT
 }
