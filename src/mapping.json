@@ -2,176 +2,176 @@
   "settings": {
     "number_of_shards": 1
   },
-  "mappings":{
-    "studentstab":{
-      "properties":{
-        "studid":{
-          "type":"integer"
+  "mappings": {
+    "studentstab": {
+      "properties": {
+        "studid": {
+          "type": "integer"
         },
-        "username":{
+        "username": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "username":{
+        "username": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "realname":{
+        "realname": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "sex":{
-          "type":"integer"
+        "sex": {
+          "type": "integer"
         },
-        "phone":{
+        "phone": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "email":{
+        "email": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "userlevel":{
+        "userlevel": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "qq":{
+        "qq": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "address":{
+        "address": {
           "type": "string",
           "index": "no"
         },
-        "postcode":{
+        "postcode": {
           "type": "string",
           "index": "no"
         },
-        "job":{
+        "job": {
           "type": "string",
           "index": "no"
         },
-        "studyaim":{
+        "studyaim": {
           "type": "string",
           "index": "no"
         },
-        "remark":{
+        "remark": {
           "type": "string",
           "index": "no"
         },
-        "skype":{
+        "skype": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "provincename":{
+        "provincename": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "cityname":{
+        "cityname": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "creator":{
+        "creator": {
           "type": "string",
           "index": "no"
         },
-        "registertime":{
+        "registertime": {
           "store": true,
           "format": "yyyy-MM-dd",
           "type": "date"
         },
-        "creattime":{
+        "creattime": {
           "type": "date",
           "index": "no"
         },
-        "modifytime":{
+        "modifytime": {
           "type": "date",
           "index": "no"
         },
-        "modifier":{
+        "modifier": {
           "type": "integer"
         },
-        "phonebackone":{
+        "phonebackone": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "phonebacktwo":{
+        "phonebacktwo": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "phonebackthree":{
+        "phonebackthree": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "phonebackfour":{
+        "phonebackfour": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "lastcallphone":{
+        "lastcallphone": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "oldid":{
+        "oldid": {
           "type": "integer"
         },
-        "channel":{
+        "channel": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "sub_channel":{
+        "sub_channel": {
           "type": "string",
           "index": "not_analyzed",
           "omit_norms": true,
           "index_options": "docs"
         },
-        "status":{
+        "status": {
           "type": "integer"
         },
-        "isphone":{
+        "isphone": {
           "type": "integer"
         },
-        "isorder":{
+        "isorder": {
           "type": "integer"
         }
       }
     },
-    "orders":{
-      "_parent":{
-        "type":"studentstab"
+    "shark_order_for_search": {
+      "_parent": {
+        "type": "studentstab"
       },
-      "properties":{
+      "properties": {
         "id": {
           "type": "integer"
         },
@@ -230,11 +230,11 @@
         }
       }
     },
-    "jobs":{
-      "_parent":{
-        "type":"studentstab"
+    "jobs": {
+      "_parent": {
+        "type": "studentstab"
       },
-      "properties":{
+      "properties": {
         "id": {
           "type": "integer"
         },
@@ -424,6 +424,53 @@
           "format": "yyyy-MM-dd HH:mm:ss",
           "type": "date",
           "index": "no"
+        }
+      }
+    },
+    "market_activity": {
+      "_parent": {
+        "type": "studentstab"
+      },
+      "properties": {
+        "studid": {
+          "type": "integer"
+        },
+        "marketactname": {
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        }
+      }
+    },
+    "product_activity": {
+      "_parent": {
+        "type": "studentstab"
+      },
+      "properties": {
+        "studid": {
+          "type": "integer"
+        },
+        "productactname": {
+          "type": "string",
+          "index": "not_analyzed",
+          "omit_norms": true,
+          "index_options": "docs"
+        }
+      }
+    },
+    "shark_refundorders": {
+      "_parent": {
+        "type": "studentstab"
+      },
+      "properties": {
+        "studid": {
+          "type": "integer"
+        },
+        "refunddate": {
+          "store": true,
+          "format": "yyyy-MM-dd",
+          "type": "date"
         }
       }
     }
